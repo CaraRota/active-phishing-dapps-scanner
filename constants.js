@@ -10,10 +10,6 @@ export const USER_AGENT =
 export const ACCEPT_LANGUAGE = "en-US,en;q=0.9";
 export const ACCEPT = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
 
-export const METAMASK_URL =
-    "https://raw.githubusercontent.com/MetaMask/eth-phishing-detect/main/src/config.json";
-export const OPENPHISH_URL = "https://openphish.com/feed.txt";
-
 export const SUSPENSION_KEYWORDS = [
     "account suspended",
     "this site has been suspended",

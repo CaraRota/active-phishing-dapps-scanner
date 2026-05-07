@@ -16,38 +16,49 @@ No build step. No dependencies. Node.js ESM (`"type": "module"` in package.json)
 
 ### Environment variables
 
-| Variable | Default | Description |
-|---|---|---|
-| `TARGET_SITES` | `10` | Stop after finding this many confirmed phishing dapps |
-| `CONCURRENCY` | `25` | Simultaneous domain checks |
+| Variable       | Default | Description                                           |
+| -------------- | ------- | ----------------------------------------------------- |
+| `TARGET_SITES` | `10`    | Stop after finding this many confirmed phishing dapps |
+| `CONCURRENCY`  | `25`    | Simultaneous domain checks                            |
 
 ## Architecture
 
-Single-file script (`index.js`). Flow:
+Three modules; no build step.
 
-1. **Load domains** — fetches MetaMask's eth-phishing-detect blacklist and OpenPhish feed in parallel, always fresh.
-2. **Deduplicate + shuffle** — merges both sources, deduplicates, then shuffles so repeated runs sample different domains.
-3. **Worker pool** — `CONCURRENCY` async workers pull from a shared queue. Each worker GETs the domain (HTTPS first, HTTP fallback), checks raw HTML length (`MIN_HTML_LENGTH`), checks visible body text for suspension keywords, then scores the full HTML for signals.
-4. **Early exit** — stops the entire pool the moment `TARGET_SITES` qualifying sites are found.
-5. **Output** — prints results to console as found; saves full JSON to `phishing-dapps-<timestamp>.json`.
+- **`sources.js`** — blocklist source configs (`BLOCKLISTS` array). Each entry has `name`, `url`, `parse(res)`, and optional `optional: true`. Add or remove sources here.
+- **`helpers.js`** — `fetchWithTimeout`, `extractTitle`, `extractBodyText`, `validateBlocklists`.
+- **`index.js`** — orchestration: loads domains, deduplicates, shuffles, runs the worker pool, writes output.
+
+Flow:
+
+1. **Validate** — checks `BLOCKLISTS` entries are well-formed at startup (fails fast before any network I/O).
+2. **Load domains** — fetches all sources in parallel. Optional sources are skipped on failure; required sources propagate the error.
+3. **Deduplicate + shuffle** — merges all sources, deduplicates, then shuffles so repeated runs sample different domains.
+4. **Worker pool** — `CONCURRENCY` async workers pull from a shared queue. Each worker GETs the domain (HTTPS first, HTTP fallback), checks raw HTML length (`MIN_HTML_LENGTH`), checks visible body text for suspension keywords, then scores the full HTML for signals.
+5. **Early exit** — stops the entire pool the moment `TARGET_SITES` qualifying sites are found.
+6. **Output** — prints results to console as found; saves full JSON to `phishing-dapps-<timestamp>.json`.
 
 ## Scoring system
 
 Only sites with score ≥ 8 are reported. Signals are checked against the full HTML including inline scripts:
 
 Active wallet connection API:
+
 - `eth_requestaccounts` → +6
 - `window.ethereum` / `walletconnect` → +4 each
 - `web3modal` / `rainbowkit` / `wagmi` / `connectkit` → +2 each
 
 UI phishing:
+
 - `connect wallet` / `connect to dapp` → +5 each
 - `metamask` / `wallet` / `web3` / `ethereum` → +1 each
 
 ## Sources
 
-- **MetaMask eth-phishing-detect** — `blacklist` array from `src/config.json`. Crypto-specific, ~50k domains. Always fetched fresh from GitHub.
-- **OpenPhish** — free community feed (`feed.txt`). General phishing, not crypto-specific; treated as secondary. Fetch failure is non-fatal.
+Defined in `sources.js`. To add a source, append an entry to the `BLOCKLISTS` array.
+
+- **MetaMask eth-phishing-detect** — `blacklist` array from `src/config.json`. Crypto-specific, ~50k domains. Required source.
+- **OpenPhish** — free community feed (`feed.txt`). General phishing, not crypto-specific; treated as secondary (`optional: true`). Fetch failure is non-fatal.
 
 ## Output files
 

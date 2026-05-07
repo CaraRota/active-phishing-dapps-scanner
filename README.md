@@ -11,6 +11,8 @@ This is not a general phishing scanner. The goal is to quickly surface a small n
 3. Scores each live site by wallet connection signals found in its HTML and inline scripts
 4. Stops as soon as enough qualifying sites are found
 
+Sources are defined in `sources.js`. Add or remove blocklist feeds there.
+
 ## Usage
 
 Requires Node ≥ 18. No dependencies.
@@ -21,22 +23,22 @@ node index.js
 
 ### Environment variables
 
-| Variable | Default | Description |
-|---|---|---|
-| `TARGET_SITES` | `10` | Stop after finding this many confirmed phishing dapps |
-| `CONCURRENCY` | `25` | Simultaneous domain checks |
+| Variable       | Default | Description                                           |
+| -------------- | ------- | ----------------------------------------------------- |
+| `TARGET_SITES` | `10`    | Stop after finding this many confirmed phishing dapps |
+| `CONCURRENCY`  | `25`    | Simultaneous domain checks                            |
 
 ## Scoring
 
 Only sites with a score ≥ 8 are reported. Signals are checked against the full HTML including inline scripts:
 
-| Signal | Weight |
-|---|---|
-| `eth_requestaccounts` | +6 |
-| `window.ethereum` / `walletconnect` | +4 each |
+| Signal                                              | Weight  |
+| --------------------------------------------------- | ------- |
+| `eth_requestaccounts`                               | +6      |
+| `window.ethereum` / `walletconnect`                 | +4 each |
 | `web3modal` / `wagmi` / `rainbowkit` / `connectkit` | +2 each |
-| `connect wallet` / `connect to dapp` | +5 each |
-| `metamask` / `wallet` / `web3` / `ethereum` | +1 each |
+| `connect wallet` / `connect to dapp`                | +5 each |
+| `metamask` / `wallet` / `web3` / `ethereum`         | +1 each |
 
 Sites that only contain generic crypto text without wallet connection code will not reach the threshold.
 
