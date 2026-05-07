@@ -1,0 +1,19 @@
+{
+    "name": "active-phishing-dapps-scanner",
+    "version": "1.0.0",
+    "description": "Scans MetaMask and OpenPhish blocklists to surface live crypto phishing dapps for wallet security testing.",
+    "type": "module",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "keywords": ["phishing", "crypto", "web3", "security", "dapp", "metamask", "wallet"],
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/CaraRota/active-phishing-dapps-scanner.git"
+    },
+    "engines": {
+        "node": ">=18"
+    }
+}
