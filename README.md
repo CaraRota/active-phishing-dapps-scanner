@@ -45,3 +45,5 @@ Sites that only contain generic crypto text without wallet connection code will 
 ## Output
 
 Results are printed to the console as they are found and saved to `phishing-dapps-<timestamp>.json`.
+
+Each run also overwrites `latest-scan.json` with the most recent results. This file is committed to the repo and serves as the auditable record of the current site selection — it includes the scan date, how many domains were checked, and the score and wallet-connection signals for each qualifying site.

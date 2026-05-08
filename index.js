@@ -147,11 +147,11 @@ async function main() {
 
     const timestamp = new Date().toISOString().replace(/:/g, "-");
     const outPath = `phishing-dapps-${timestamp}.json`;
-    fs.writeFileSync(
-        outPath,
-        JSON.stringify({ timestamp: new Date().toISOString(), checked, elapsed, found }, null, 2),
-    );
+    const output = JSON.stringify({ timestamp: new Date().toISOString(), checked, elapsed, found }, null, 2);
+    fs.writeFileSync(outPath, output);
     console.log(`Saved to ${outPath}`);
+    fs.writeFileSync("latest-scan.json", output);
+    console.log(`Updated latest-scan.json`);
 }
 
 main().catch((e) => {

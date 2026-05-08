@@ -1,0 +1,136 @@
+{
+  "timestamp": "2026-05-07T20:02:50.465Z",
+  "checked": 2666,
+  "elapsed": "330.5",
+  "found": [
+    {
+      "domain": "flagship-web3-v1-336a757b5b637a684207a3.webflow.io",
+      "url": "https://flagship-web3-v1-336a757b5b637a684207a3.webflow.io",
+      "score": 19,
+      "hints": [
+        "eth_requestaccounts",
+        "window.ethereum",
+        "connect wallet",
+        "metamask",
+        "wallet",
+        "web3",
+        "ethereum"
+      ],
+      "title": "Home V2"
+    },
+    {
+      "domain": "clawmintwlfi.xyz",
+      "url": "https://clawmintwlfi.xyz",
+      "score": 18,
+      "hints": [
+        "eth_requestaccounts",
+        "window.ethereum",
+        "connect wallet",
+        "metamask",
+        "wallet",
+        "ethereum"
+      ],
+      "title": "ClawMint — AI Agent NFT Platform on BSC"
+    },
+    {
+      "domain": "trustwallet.sendandconfirm.in",
+      "url": "https://trustwallet.sendandconfirm.in",
+      "score": 13,
+      "hints": [
+        "eth_requestaccounts",
+        "window.ethereum",
+        "wallet",
+        "web3",
+        "ethereum"
+      ],
+      "title": "Send USDT"
+    },
+    {
+      "domain": "hyperliqdrop.com",
+      "url": "https://hyperliqdrop.com",
+      "score": 12,
+      "hints": [
+        "walletconnect",
+        "connect wallet",
+        "metamask",
+        "wallet",
+        "web3"
+      ],
+      "title": "Hyperliquid l Airdrop"
+    },
+    {
+      "domain": "venofinance.net",
+      "url": "https://venofinance.net",
+      "score": 11,
+      "hints": [
+        "walletconnect",
+        "connect wallet",
+        "wallet",
+        "ethereum"
+      ],
+      "title": "Veno Finance - Liquid Staking Made Simple"
+    },
+    {
+      "domain": "cryptocom-wallet-review.com",
+      "url": "https://cryptocom-wallet-review.com",
+      "score": 11,
+      "hints": [
+        "walletconnect",
+        "connect wallet",
+        "wallet",
+        "ethereum"
+      ],
+      "title": "Crypto.com Wallet Review, Features &amp; Safe Usage Guide | Crypto.com Wallet Independent Review"
+    },
+    {
+      "domain": "token-2049.world",
+      "url": "https://token-2049.world",
+      "score": 9,
+      "hints": [
+        "connect wallet",
+        "metamask",
+        "wallet",
+        "web3",
+        "ethereum"
+      ],
+      "title": "TOKEN2049 | 29-30 April 2026 | Dubai"
+    },
+    {
+      "domain": "chainbank-network.pages.dev",
+      "url": "https://chainbank-network.pages.dev",
+      "score": 9,
+      "hints": [
+        "connect wallet",
+        "metamask",
+        "wallet",
+        "web3",
+        "ethereum"
+      ],
+      "title": "ChainBank Presale - Become an Early Investor in $CHAIN Tokens"
+    },
+    {
+      "domain": "maga-mem-pages-dev.pages.dev",
+      "url": "https://maga-mem-pages-dev.pages.dev",
+      "score": 8,
+      "hints": [
+        "connect wallet",
+        "metamask",
+        "wallet",
+        "ethereum"
+      ],
+      "title": "MAGA Memecoin"
+    },
+    {
+      "domain": "master--ethereumorg.netlify.app",
+      "url": "https://master--ethereumorg.netlify.app",
+      "score": 8,
+      "hints": [
+        "connect wallet",
+        "wallet",
+        "web3",
+        "ethereum"
+      ],
+      "title": "Ethereum - The complete guide from Ethereum.org"
+    }
+  ]
+}
